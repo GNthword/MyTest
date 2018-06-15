@@ -67,4 +67,12 @@
         />
 
 
+    <Button
+        android:id="@+id/btn_aa_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aa test"
+        />
+
+
 </com.milog.test.mytest.common.TestView>

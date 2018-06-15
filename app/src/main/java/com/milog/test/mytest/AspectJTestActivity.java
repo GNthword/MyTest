@@ -6,11 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-
-import java.lang.reflect.Array;
-
 /**
  * Created by miloway on 2018/6/14.
  */

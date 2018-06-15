@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.milog.test.mytest.common.AspectJTest;
 
 public class MainActivity extends Activity {
 
@@ -72,6 +69,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AspectJTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.btn_aa_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AndroidAnnotationTestActivity_.class);
                 startActivity(intent);
             }
         });

@@ -41,61 +41,90 @@ dependencies {
     compile files('libs/aspectjrt.jar')
 }
 
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
+//AspectJ
+
+//import org.aspectj.bridge.IMessage
+//import org.aspectj.bridge.MessageHandler
+//import org.aspectj.tools.ajc.Main
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath 'org.aspectj:aspectjtools:1.9.1'
+//        classpath 'org.aspectj:aspectjweaver:1.9.1'
+//    }
+//}
+//repositories {
+//    mavenCentral()
+//}
+//final def log = project.logger
+//final def variants = project.android.applicationVariants
+//variants.all { variant ->
+//    if (!variant.buildType.isDebuggable()) {
+//        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+//        return;
+//    }
+//
+//    JavaCompile javaCompile = variant.javaCompile
+//    javaCompile.doLast {
+//        String[] args = ["-showWeaveInfo",
+//                         "-source", javaCompile.sourceCompatibility,
+//                         "-target", javaCompile.targetCompatibility,
+//                         "-inpath", javaCompile.destinationDir.toString(),
+//                         "-aspectpath", javaCompile.classpath.asPath,
+//                         "-d", javaCompile.destinationDir.toString(),
+//                         "-classpath", javaCompile.classpath.asPath,
+//                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+//        log.debug "ajc args: " + Arrays.toString(args)
+//
+//        MessageHandler handler = new MessageHandler(true);
+//        new Main().run(args, handler);
+//        for (IMessage message : handler.getMessages(null, true)) {
+//            switch (message.getKind()) {
+//                case IMessage.ABORT:
+//                case IMessage.ERROR:
+//                case IMessage.FAIL:
+//                    log.error message.message, message.thrown
+//                    break;
+//                case IMessage.WARNING:
+//                    log.warn message.message, message.thrown
+//                    break;
+//                case IMessage.INFO:
+//                    log.info message.message, message.thrown
+//                    break;
+//                case IMessage.DEBUG:
+//                    log.debug message.message, message.thrown
+//                    break;
+//            }
+//        }
+//    }
+//}
+
+//AspectJ end
+
+//AndroidAnnotation
+
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.aspectj:aspectjtools:1.9.1'
-        classpath 'org.aspectj:aspectjweaver:1.9.1'
-    }
-}
-repositories {
-    mavenCentral()
-}
-final def log = project.logger
-final def variants = project.android.applicationVariants
-variants.all { variant ->
-    if (!variant.buildType.isDebuggable()) {
-        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-        return;
-    }
-
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = ["-showWeaveInfo",
-                         "-source", javaCompile.sourceCompatibility,
-                         "-target", javaCompile.targetCompatibility,
-                         "-inpath", javaCompile.destinationDir.toString(),
-                         "-aspectpath", javaCompile.classpath.asPath,
-                         "-d", javaCompile.destinationDir.toString(),
-                         "-classpath", javaCompile.classpath.asPath,
-                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
-        log.debug "ajc args: " + Arrays.toString(args)
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler);
-        for (IMessage message : handler.getMessages(null, true)) {
-            switch (message.getKind()) {
-                case IMessage.ABORT:
-                case IMessage.ERROR:
-                case IMessage.FAIL:
-                    log.error message.message, message.thrown
-                    break;
-                case IMessage.WARNING:
-                    log.warn message.message, message.thrown
-                    break;
-                case IMessage.INFO:
-                    log.info message.message, message.thrown
-                    break;
-                case IMessage.DEBUG:
-                    log.debug message.message, message.thrown
-                    break;
-            }
-        }
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
+apply plugin: 'android-apt'
+def AAVersion = '4.4.0'
+// 可根据需要修改版本号
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+    }
+}
+
+//AndroidAnnotation end
