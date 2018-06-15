@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.milog.test.mytest">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application
+        android:name=".app.TestApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NubiaLayoutTestActivity" />
+        <activity android:name=".ListTestActivity" />
+        <activity android:name=".GridViewTestActivity" />
+        <activity android:name=".RelativeTestActivity" />
+        <activity android:name=".PermisstionTestActivity"/>
+        <activity android:name=".FunctionManagerActivity"/>
+        <activity android:name=".AspectJTestActivity"/>
+    </application>
+
+</manifest>

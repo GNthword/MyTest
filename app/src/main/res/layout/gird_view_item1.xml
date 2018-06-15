@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="153.33dp"
+    android:layout_height="149.33dp">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="153.33dp"
+        android:layout_height="149.33dp"
+        android:src="@drawable/grid_folder_yellow"
+        />
+    <RelativeLayout
+        android:layout_width="153.33dp"
+        android:layout_height="149.33dp">
+
+    <include
+        layout="@layout/note_item_bottom" />
+
+    <TextView
+        android:id="@+id/tv_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="item 1"
+        android:layout_above="@+id/ll_note_indicators"
+        android:background="@drawable/view_selector"
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>
