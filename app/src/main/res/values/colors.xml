@@ -7,4 +7,7 @@
 
     <color name="note_edit_view_title_bar_bg">#FFF7D66C</color>
     <color name="note_edit_view_title_item_press_bg">#FF000000</color>
+
+    <color name="divider_line_color">#FFEEEEEE</color>
+    <color name="text_color">#FF222222</color>
 </resources>

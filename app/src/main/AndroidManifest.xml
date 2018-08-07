@@ -27,6 +27,7 @@
         <activity android:name=".FunctionManagerActivity"/>
         <activity android:name=".AspectJTestActivity"/>
         <activity android:name=".AndroidAnnotationTestActivity_"/>
+        <activity android:name=".WebViewTestActivity"/>
     </application>
 
 </manifest>
