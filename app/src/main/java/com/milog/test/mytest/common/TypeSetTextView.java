@@ -1,10 +1,18 @@
 package com.milog.test.mytest.common;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.milog.test.mytest.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by miloway on 2018/8/7.
@@ -12,23 +20,144 @@ import android.widget.TextView;
 
 public class TypeSetTextView extends TextView {
 
+    private TextPaint paint;
+    private String content;
+    private float textSize;
+    private float textDrawWidth;
+    private float paddingTop;
+    private float paddingLeft;
+    private float paddingRight;
+
+    private float lineHeightMul;
+
+    private boolean isLineHeightRaw;
+    private boolean isNeedTransform;
     public TypeSetTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.type_set_text_view);
+        if (attrs != null) {
+            isNeedTransform = attrs.getAttributeBooleanValue("http://schemas.android.com/apk/res-auto", "transform_character", true);
+        }
+        isLineHeightRaw = typedArray.getBoolean(R.styleable.type_set_text_view_line_height_raw, false);
+        typedArray.recycle();
         init();
     }
 
     private void init() {
-        
+        paint = getPaint();
+        content = getText().toString();
+        textSize = paint.getTextSize();
+        paddingTop = getPaddingTop();
+        paddingLeft = getPaddingLeft();
+        paddingRight = getPaddingRight();
+
+        if (!TextUtils.isEmpty(content)) {
+            if (isNeedTransform) {
+                content = content.replace("\t", "    ");
+            }
+        }
     }
 
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = calcViewHeight(width);
+        if (width == 0) {
+            return;
+        }
+        setMeasuredDimension(width, height);
     }
 
+    private int calcViewHeight(int width) {
+        textDrawWidth = width - paddingLeft - paddingRight;
+        char[] chars = content.toCharArray();
+        int length = chars.length;
+        float curWidth = 0;
+        int lines = 0;
+        for (int i = 0; i < length; i++) {
+            char c = chars[i];
+            if (c == '\n') {
+                lines++;
+                curWidth = 0;
+                i++;
+                continue;
+            }
+            curWidth += paint.measureText(chars, i, 1);
+            if (curWidth >= textDrawWidth) {
+                lines++;
+                curWidth = paint.measureText(chars, i, 1);
+            }
+        }
+        if (curWidth > 0) {
+            lines++;
+        }
+
+        return (int) (paddingTop + lines * getLineHeight());
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        drawText(canvas);
+    }
+
+    private void drawText(Canvas canvas) {
+        textDrawWidth = getWidth() - paddingLeft - paddingRight;
+        char[] chars = content.toCharArray();
+        int length = chars.length;
+        float curWidth = 0;
+        int pos = 0;
+        ArrayList<String> strings = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            char c = chars[i];
+            if (c == '\n') {
+                curWidth = 0;
+                strings.add(content.substring(pos,i));
+                i++;
+                pos = i;
+                continue;
+            }
+            curWidth += paint.measureText(chars, i, 1);
+            if (curWidth >= textDrawWidth) {
+                curWidth = paint.measureText(chars, i, 1);
+                strings.add(content.substring(pos,i));
+                pos = i;
+            }
+        }
+        if (curWidth > 0) {
+            strings.add(content.substring(pos));
+        }
+
+        float y;
+        float x = paddingLeft;
+        int baseLine = getBaseLine();
+        int lineHeight = getLineHeight();
+        for (int i = 0; i < strings.size(); i++) {
+            y = paddingTop + i * lineHeight + baseLine;
+            canvas.drawText(strings.get(i), x, y, paint);
+        }
+    }
+
+    /**
+     * 绘制文字的基准线，对应 Paint.FontMetrics.leading 即0值
+     * 当前 top = -44.35，baseline为45 即-Math.floor(paint.getFontMetrics().top) 或者 Math.ceil(-paint.getFontMetrics().top)
+     */
+    public int getBaseLine() {
+        if (isLineHeightRaw) {
+            return super.getBaseline();
+        }else {
+            return (getLineHeight() - super.getLineHeight()) /2 + super.getBaseline();
+        }
+    }
+
+
+    @Override
+    public int getLineHeight() {
+        if (isLineHeightRaw) {
+            return super.getLineHeight();
+        }else {
+            Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+            return (int) (Math.ceil(fontMetrics.bottom - fontMetrics.top) + textSize/5 + 0.5f);
+        }
     }
 }

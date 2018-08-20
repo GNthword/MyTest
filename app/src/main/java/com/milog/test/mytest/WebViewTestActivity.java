@@ -1,19 +1,12 @@
 package com.milog.test.mytest;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-
 import com.milog.test.mytest.common.Browser;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -49,7 +42,7 @@ public class WebViewTestActivity extends Activity {
         files = new ArrayList<String>(3);
         files.add("1.htm");
         files.add("2.htm");
-        files.add("3.html");
+        files.add("3.htm");
         index = 0;
     }
 
@@ -64,7 +57,6 @@ public class WebViewTestActivity extends Activity {
     }
 
     public String getStringFromAssets() {
-        File file = new File(files.get(index));
         InputStream is = null;
         BufferedInputStream bis = null;
         ByteArrayOutputStream bos = null;

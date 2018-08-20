@@ -28,6 +28,7 @@
         <activity android:name=".AspectJTestActivity"/>
         <activity android:name=".AndroidAnnotationTestActivity_"/>
         <activity android:name=".WebViewTestActivity"/>
+        <activity android:name=".DialogTestActivity"/>
     </application>
 
 </manifest>

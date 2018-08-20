@@ -89,6 +89,14 @@ public class MainActivity extends Activity {
             }
         });
 
+        findViewById(R.id.btn_dialog_and_tv_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DialogTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if (Looper.myLooper() == Looper.getMainLooper()){
             tvStatus.setText("主线程");
         }else {

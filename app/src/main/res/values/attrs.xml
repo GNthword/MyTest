@@ -3,6 +3,8 @@
 
     <declare-styleable name="type_set_text_view">
         <attr name="type_set" format="boolean"/>
+        <attr name="transform_character" format="boolean" />
+        <attr name="line_height_raw" format="boolean"/>
     </declare-styleable>
 
 </resources>

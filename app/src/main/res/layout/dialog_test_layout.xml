@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:milo="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <Button
+        android:id="@+id/btn_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        >
+
+        <com.milog.test.mytest.common.TypeSetTextView
+            android:id="@+id/tv_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_statement"
+            milo:transform_character="true"
+            milo:line_height_raw="false"
+            />
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -94,6 +94,13 @@
                 android:text="webview test"
                 />
 
+            <Button
+                android:id="@+id/btn_dialog_and_tv_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dialog and tv test"
+                />
+
 
         </LinearLayout>
 

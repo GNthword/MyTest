@@ -56,14 +56,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/text_size_large"
+            android:text="@string/btn_cancel"
             />
 
-
-
-
-
-
-
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_large"
+            android:text="@string/btn_cancel"
+            />
 
     </LinearLayout>
 
