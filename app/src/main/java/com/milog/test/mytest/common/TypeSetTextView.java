@@ -28,10 +28,10 @@ public class TypeSetTextView extends TextView {
     private float paddingLeft;
     private float paddingRight;
 
-    private float lineHeightMul;
-
     private boolean isLineHeightRaw;
     private boolean isNeedTransform;
+
+    private final String TAG = "TypeSetTextView";
     public TypeSetTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.type_set_text_view);
@@ -41,6 +41,7 @@ public class TypeSetTextView extends TextView {
         isLineHeightRaw = typedArray.getBoolean(R.styleable.type_set_text_view_line_height_raw, false);
         typedArray.recycle();
         init();
+        MiloLog.d(TAG, "<init>");
     }
 
     private void init() {
@@ -53,7 +54,24 @@ public class TypeSetTextView extends TextView {
 
         if (!TextUtils.isEmpty(content)) {
             if (isNeedTransform) {
-                content = content.replace("\t", "    ");
+                content = content.replace("\t", "   ");
+            }
+        }
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        MiloLog.d(TAG, "onFinishInflate");
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        super.setText(text, type);
+        content = getText().toString();
+        if (!TextUtils.isEmpty(content)) {
+            if (isNeedTransform) {
+                content = content.replace("\t", "   ");
             }
         }
     }
@@ -61,12 +79,19 @@ public class TypeSetTextView extends TextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        MiloLog.d(TAG, "onMeasure");
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = calcViewHeight(width);
         if (width == 0) {
             return;
         }
         setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        MiloLog.d(TAG, "onLayout " + changed);
     }
 
     private int calcViewHeight(int width) {
@@ -97,7 +122,14 @@ public class TypeSetTextView extends TextView {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        MiloLog.d(TAG, "onSizeChanged");
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
+        MiloLog.d(TAG, "onDraw");
         drawText(canvas);
     }
 

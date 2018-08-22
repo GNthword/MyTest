@@ -22,7 +22,7 @@ public class DialogFactory {
         if (context == null) {
             context = TestApplication.getApplication();
         }
-        String title = "";
+        String title = "tip";
         String ok = context.getResources().getString(R.string.btn_ok);
         String cancel = context.getResources().getString(R.string.btn_cancel);
 
@@ -47,6 +47,7 @@ public class DialogFactory {
 
         //init theme
 
+        dialog.setContentView(contentView);
         return dialog;
     }
 }

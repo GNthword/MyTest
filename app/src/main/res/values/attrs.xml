@@ -7,4 +7,7 @@
         <attr name="line_height_raw" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="milo_dialog">
+        <attr name="width_percent" format="float"/>
+    </declare-styleable>
 </resources>

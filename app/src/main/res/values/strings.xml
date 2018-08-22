@@ -3,7 +3,7 @@
     <string name="btn_ok">ok</string>
     <string name="btn_cancel">cancel</string>
 
-    <string name="privacy_statement" formatted="false">\t华为消费者业务隐私声明\n
+    <string name="privacy_statement" formatted="false">&#160;&#160;&#160;&#160;华为消费者业务隐私声明\n
 \t最近更新日期：\n
 \t2018年4月15日\n
 \t华为终端（深圳）有限公司及其全球的企业附属公司（以下合称为“华为”、“我们”和“我们的”）充分尊重您的隐私权。我们特此制定本《华为消费者业务隐私声明》（以下简称为“本声明”）以便您了解我们如何搜集、使用、披露、保护、存储及传输您的个人数据。请您仔细阅读本声明。如您有任何疑问，请告知我们。\n
