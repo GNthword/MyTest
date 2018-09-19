@@ -82,7 +82,7 @@ public class TypeSetTextView extends TextView {
         MiloLog.d(TAG, "onMeasure");
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = calcViewHeight(width);
-        if (width == 0) {
+        if (width == 0 || height == 0) {
             return;
         }
         setMeasuredDimension(width, height);

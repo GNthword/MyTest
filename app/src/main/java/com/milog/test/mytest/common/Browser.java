@@ -62,6 +62,12 @@ public class Browser extends WebView {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    scrollTo(0,0);
+                }
+            },100);
         }
 
         @Override

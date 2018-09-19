@@ -24,7 +24,6 @@
             android:id="@+id/tv_show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/privacy_statement"
             milo:transform_character="true"
             milo:line_height_raw="false"
             />

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.milog.test.mytest.common.DialogFactory;
+import com.milog.test.mytest.common.TypeSetTextView;
 
 /**
  * Created by miloway on 2018/8/20.
@@ -14,14 +15,19 @@ import com.milog.test.mytest.common.DialogFactory;
 
 public class DialogTestActivity extends Activity {
 
+    TypeSetTextView typeSetTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_test_layout);
+
+        typeSetTextView = (TypeSetTextView) findViewById(R.id.tv_show);
         findViewById(R.id.btn_show).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                typeSetTextView.setText("aaa");
+//                showDialog();
             }
         });
 
