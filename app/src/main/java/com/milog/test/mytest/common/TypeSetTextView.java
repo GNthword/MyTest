@@ -25,6 +25,7 @@ public class TypeSetTextView extends TextView {
     private float textSize;
     private float textDrawWidth;
     private float paddingTop;
+    private float paddingBottom;
     private float paddingLeft;
     private float paddingRight;
 
@@ -51,6 +52,7 @@ public class TypeSetTextView extends TextView {
         paddingTop = getPaddingTop();
         paddingLeft = getPaddingLeft();
         paddingRight = getPaddingRight();
+        paddingBottom = getPaddingBottom();
 
         if (!TextUtils.isEmpty(content)) {
             if (isNeedTransform) {
@@ -82,7 +84,7 @@ public class TypeSetTextView extends TextView {
         MiloLog.d(TAG, "onMeasure");
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = calcViewHeight(width);
-        if (width == 0 || height == 0) {
+        if (width == 0) {
             return;
         }
         setMeasuredDimension(width, height);
@@ -117,8 +119,12 @@ public class TypeSetTextView extends TextView {
         if (curWidth > 0) {
             lines++;
         }
+        //设置默认高度
+        if (lines == 0) {
+            lines = 1;
+        }
 
-        return (int) (paddingTop + lines * getLineHeight());
+        return (int) (paddingTop + lines * getLineHeight() + paddingBottom);
     }
 
     @Override
@@ -162,7 +168,7 @@ public class TypeSetTextView extends TextView {
 
         float y;
         float x = paddingLeft;
-        int baseLine = getBaseLine();
+        int baseLine = getBaseline();
         int lineHeight = getLineHeight();
         for (int i = 0; i < strings.size(); i++) {
             y = paddingTop + i * lineHeight + baseLine;
@@ -174,14 +180,14 @@ public class TypeSetTextView extends TextView {
      * 绘制文字的基准线，对应 Paint.FontMetrics.leading 即0值
      * 当前 top = -44.35，baseline为45 即-Math.floor(paint.getFontMetrics().top) 或者 Math.ceil(-paint.getFontMetrics().top)
      */
-    public int getBaseLine() {
+    @Override
+    public int getBaseline() {
         if (isLineHeightRaw) {
             return super.getBaseline();
         }else {
             return (getLineHeight() - super.getLineHeight()) /2 + super.getBaseline();
         }
     }
-
 
     @Override
     public int getLineHeight() {

@@ -26,7 +26,7 @@ public class DialogTestActivity extends Activity {
         findViewById(R.id.btn_show).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typeSetTextView.setText("aaa");
+                typeSetTextView.setText("aaa测试");
 //                showDialog();
             }
         });
