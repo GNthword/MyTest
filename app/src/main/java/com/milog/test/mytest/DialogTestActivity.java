@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.milog.test.mytest.common.DialogFactory;
-import com.milog.test.mytest.common.TypeSetTextView;
+import com.milog.test.mytest.view.TypeSetTextView;
 
 /**
  * Created by miloway on 2018/8/20.

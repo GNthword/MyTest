@@ -97,6 +97,22 @@ public class MainActivity extends Activity {
             }
         });
 
+        findViewById(R.id.btn_nested_scroll_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NestedScrollViewTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.btn_my_scroll_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyScrollTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if (Looper.myLooper() == Looper.getMainLooper()){
             tvStatus.setText("主线程");
         }else {

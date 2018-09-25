@@ -1,4 +1,4 @@
-package com.milog.test.mytest.common;
+package com.milog.test.mytest.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.milog.test.mytest.R;
+import com.milog.test.mytest.common.MiloLog;
 
 import java.util.ArrayList;
 

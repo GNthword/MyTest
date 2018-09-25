@@ -1,4 +1,4 @@
-package com.milog.test.mytest.common;
+package com.milog.test.mytest.view;
 
 import android.content.Context;
 import android.os.Handler;

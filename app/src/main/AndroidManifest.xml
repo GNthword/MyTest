@@ -29,6 +29,8 @@
         <activity android:name=".AndroidAnnotationTestActivity_"/>
         <activity android:name=".WebViewTestActivity"/>
         <activity android:name=".DialogTestActivity"/>
+        <activity android:name=".NestedScrollViewTestActivity"/>
+        <activity android:name=".MyScrollTestActivity"/>
     </application>
 
 </manifest>

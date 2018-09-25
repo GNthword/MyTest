@@ -20,7 +20,7 @@
         android:paddingRight="4dp"
         >
 
-        <com.milog.test.mytest.common.TypeSetTextView
+        <com.milog.test.mytest.view.TypeSetTextView
             android:id="@+id/tv_show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
